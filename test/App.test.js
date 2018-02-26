@@ -7,6 +7,7 @@ import SevenHour from '../lib/scripts/SevenHour'
 import TenDay from '../lib/scripts/TenDay'
 import Welcome from '../lib/scripts/Welcome'
 import '../__mocks__/storageMock';
+import MockData from '../lib/scripts/MockData';
 
 describe('App', () => {
   let wrapper;
@@ -15,38 +16,28 @@ describe('App', () => {
     wrapper = shallow(<App />)
   })
 
-  it.skip('should exist', () => {
+  it('should exist', () => {
     expect(wrapper).toBeDefined()
   })
 
-  it.skip('should have the correct initial state', () => {
+  it('should have the correct initial state', () => {
     expect(wrapper.state('welcomePage')).toEqual(true)
     expect(wrapper.state('weatherData')).toEqual(null)
     expect(wrapper.state('location')).toEqual({city: '', state: ''})
 
   })
 
-  it.skip('should render the Welcome component if localstorage is empty', () => {
+  it('should render the Welcome component if localstorage is empty', () => {
     const emptyStorage = localStorage.store
     expect(emptyStorage).toEqual({});
     expect(wrapper.state('welcomePage')).toEqual(true);
   })
 
-  it('should retrive data from local storage on mount', () => {
-    const city = 'Austin';
-    const state = 'Texas';
+  it.skip('should hide welcome & render other components there is weatherData', () => {
+    wrapper.setState({weatherData: MockData});
 
-    localStorage.setItem('city', city);
-    localStorage.setItem('state', state);
+    shallow(<App />);
+    expect(wrapper.find('CurrenWeather').length).toEqual(1);
+  });
 
-    wrapper = mount(<App />);
-
-    expect(wrapper.state().location.city).toEqual('Austin')
-  })
-
-
-  it.skip('should render Search, CurrentWeather, SevenHour, and TenDay once there is weather data', () => {
-
-  })
-
-})
+});
