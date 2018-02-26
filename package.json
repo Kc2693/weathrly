@@ -8,7 +8,7 @@
     "build": "./node_modules/webpack/bin/webpack.js",
     "test": "jest",
     "eslint": "./node_modules/eslint/bin/eslint.js ./lib/*.js",
-    "deploy" : "npm run build&&gh-pages -d build"
+    "deploy": "npm run build&&gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -37,6 +37,7 @@
     "babel-preset-react": "^6.5.0",
     "babel-register": "^6.7.2",
     "chai": "^3.5.0",
+    "complete-me": "git+https://github.com/wagasky/complete-me.git",
     "css-loader": "^0.23.1",
     "enzyme": "^2.8.2",
     "eslint": "^2.6.0",
@@ -58,5 +59,8 @@
     "style-loader": "^0.13.1",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "@wagasky/complete-me": "git+https://github.com/wagasky/complete-me.git"
   }
 }
