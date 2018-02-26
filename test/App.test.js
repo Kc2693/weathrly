@@ -33,11 +33,11 @@ describe('App', () => {
     expect(wrapper.state('welcomePage')).toEqual(true);
   })
 
-  it.skip('should hide welcome & render other components there is weatherData', () => {
+  it('should hide welcome & render other components there is weatherData', () => {
     wrapper.setState({weatherData: MockData});
 
     shallow(<App />);
-    expect(wrapper.find('CurrenWeather').length).toEqual(1);
+    expect(wrapper.find('CurrentWeather').length).toEqual(1);
   });
 
 });
