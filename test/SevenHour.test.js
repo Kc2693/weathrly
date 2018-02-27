@@ -7,7 +7,7 @@ import mockData from '../lib/scripts/MockData';
 
 describe('Seven Hour Card', () => {
   let wrapper;
-  const stuff = mockData.hourly_forecast;
+  const stuff = mockData.hourly_forecast.slice(0,7);
 
   beforeEach(() => {
     wrapper = shallow(<SevenHour data={stuff}/>);
