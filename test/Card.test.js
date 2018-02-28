@@ -30,4 +30,12 @@ describe('Card', () => {
     expect(wrapper.props().temp).toBeDefined();
   });
 
+  it('should have the data on the card', () => {
+    wrapper = mount(<Card {...props} />)
+
+    expect(wrapper.find('h5').first().text()).toEqual('7')
+    expect(wrapper.find('img').first().prop('src')).toEqual('asdf')
+    expect(wrapper.find('h5').last().text()).toEqual('50')
+  });
+
 })
