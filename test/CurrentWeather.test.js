@@ -20,5 +20,29 @@ describe('CurrentWeather', () => {
 
   it('should exist', () => {
     expect(wrapper).toBeDefined();
-  })
+  });
+
+  it('should have a container div that contains headers', () => {
+    expect(wrapper.containsAnyMatchingElements([
+        <h1></h1>,
+        <h5>Today: </h5>,
+        <h5>Current Temperature: </h5>,
+        <h5>Current Condition: </h5>,
+        <h5>High: °F</h5>,
+        <h5>Low: °F</h5>,
+        <h4>Summary:</h4>,
+    ])).toEqual(true);
+  });
+
+  it('should receive data', () => {
+    wrapper = mount(<CurrentWeather data={mock} />)
+
+    expect(wrapper.find('h1').text()).toEqual('Louisville')
+    expect(wrapper.find('h5').first().text()).toEqual('Today: Wednesday')
+    expect(wrapper.find('.container').childAt(2).text()).toEqual('Current Temperature: 46.0 F (7.8 C)')
+    expect(wrapper.find('.container').childAt(3).text()).toEqual('Current Condition: Partly Cloudy')
+    expect(wrapper.find('.container').childAt(4).text()).toEqual('High: 51°F')
+    expect(wrapper.find('h5').last().text()).toEqual('Low: 32°F')
+    expect(wrapper.find('p').text()).toEqual('Sun and clouds mixed. High 51F. Winds NE at 10 to 15 mph.')
+  });
 })
