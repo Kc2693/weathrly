@@ -23,6 +23,15 @@ describe('Card', () => {
     expect(wrapper.find('.card')).toBeDefined()
   });
 
+  it('should have an article that contains a div, 2 h5s, and an img', () => {
+    expect(wrapper.containsAnyMatchingElements([
+        <div></div>,
+        <h5></h5>,
+        <img />,
+        <h5></h5>,
+    ])).toEqual(true);
+  });
+
   it('should receive data from the props object', () => {
     wrapper = mount(<Card {...props} />)
     expect(wrapper.props().hour).toBeDefined();

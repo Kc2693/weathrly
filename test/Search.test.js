@@ -7,6 +7,7 @@ import cityArray from '../lib/scripts/cityArray';
 
 describe('Search', () => {
   let wrapper;
+  let onClickMock = jest.fn();
 
   beforeEach(() => {
     wrapper = shallow(<Search />)
@@ -32,6 +33,15 @@ describe('Search', () => {
     expect(wrapper.find('button')).toHaveLength(1)
   });
 
+  it('should call setLocation when the search button is clicked', () => {
+    wrapper = mount(<Search setLocation={onClickMock} />)
+    const setLocation = jest.fn();
+    wrapper = mount(<Search setLocation={ setLocation } />);
+    wrapper.instance().setState({location: 'Denver'})
+    wrapper.find('button').simulate('click');
+    expect(wrapper.props().setLocation).toHaveBeenCalledTimes(1)
+  });
+
   it('should save the value of the input field to input state', () => {
     expect(wrapper.state().input).toEqual('');
     wrapper.find('input').simulate('change', {target: {value: 'Denver, CO'}});
@@ -40,24 +50,24 @@ describe('Search', () => {
   });
 
   it('should add suggestions to state when inputs are entered', () => {
-  expect(wrapper.state('suggestions')).toEqual([])
-  wrapper.find('input').simulate('change', {target: {value: 'Denver'}});
+    expect(wrapper.state('suggestions')).toEqual([])
+    wrapper.find('input').simulate('change', {target: {value: 'Denver'}});
 
 
-  expect(wrapper.state('suggestions')).toEqual([ 'denver, co' ])
-})
+    expect(wrapper.state('suggestions')).toEqual([ 'denver, co' ])
+  });
 
   it('should add multiple suggestions to state based on input', () => {
     expect(wrapper.state('suggestions')).toEqual([])
     wrapper.find('input').simulate('change', {target: {value: 'red'}});
 
     expect(wrapper.state('suggestions').length).toEqual(5)
-  })
+  });
 
   it('should not add suggestions to state for inputs less than 3', () => {
     expect(wrapper.state('suggestions')).toEqual([])
     wrapper.find('input').simulate('change', {target: {value: 're'}});
 
     expect(wrapper.state('suggestions').length).toEqual(0)
-  })
+  });
 })
