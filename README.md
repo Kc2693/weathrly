@@ -1,5 +1,5 @@
 # Weathrly
-## Solo project by Kailin Cannon
+## Solo project
 
 ### Wireframe:
 ![Image of Wireframe](wireframe.png)
